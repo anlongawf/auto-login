@@ -1,0 +1,30 @@
+# AutoLogin Configuration (Paper & Folia)
+
+database:
+  # Database type: 'sqlite' or 'mysql'
+  type: 'sqlite'
+  
+  # MySQL Configuration (only used if type is 'mysql')
+  mysql:
+    host: 'localhost'
+    port: 3306
+    database: 'minecraft'
+    username: 'root'
+    password: ''
+
+settings:
+  # Session Expiry time in hours. 0 = Never expires.
+  session-expiry: 24
+  
+  # Freeze player position while waiting for login verification (Optimized for Folia)
+  safe-login: true
+
+# Discord Webhook Notifications
+discord:
+  enabled: false
+  webhook-url: 'https://discord.com/api/webhooks/...'
+
+# List of players/IPs excluded from AutoLogin (e.g. Admin/Staff)
+# Players with permission 'autologin.bypass' are automatically excluded.
+blacklist-players: []
+#  - "AdminPlayerName"

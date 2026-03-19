@@ -1,0 +1,36 @@
+name: Java CI với Gradle
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Kiểm tra mã nguồn (Checkout)
+      uses: actions/checkout@v4
+      
+    - name: Cấu hình JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Thiết lập Gradle
+      uses: gradle/actions/setup-gradle@v3
+      
+    - name: Cấp quyền thực thi Gradlew
+      run: chmod +x gradlew
+      
+    - name: Build với Gradle
+      run: ./gradlew build
+      
+    - name: Lưu trữ tệp build (Artifacts)
+      uses: actions/upload-artifact@v4
+      with:
+        name: AutoLogin-${{ github.sha }}
+        path: build/libs/*.jar
